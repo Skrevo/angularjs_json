@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="currencyApp">
+<head>
+	<meta charset="utf-8">
+	<title>Конвертер валют</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
+
+</head>
+<body style="margin: 20px">
+<header ng-controller="CurrencyCtrl">
+	<h2>Конвертер валют</h2>
+	<table class="table table-striped">
+		<tr>
+			<th>Валюта</th>
+			<th>Покупка</th>
+			<th>Продажа</th>
+		</tr>
+		<tr ng-repeat="currenc in currency | orderBy: 'ccy'">
+			<td>{{currenc.ccy}}</td>
+			<td>{{currenc.buy}}</td>
+			<td>{{currenc.sale}}</td>
+		</tr>
+	</table>
+</header>
+<div class="calc">
+	<input type="number" id="in">
+	<select id="select1">
+		<option>UAH</option>
+		<option>EUR</option>
+		<option>USD</option>
+	</select>
+	<input type="number" id="out">
+	<select id="select2">
+		<option>UAH</option>
+		<option>EUR</option>
+		<option>USD</option>
+	</select>
+<!--	<button onclick="calc1()">From 1 to 2</button>-->
+<!--	<button onclick="calc2()">From 2 to 1</button>-->
+</div>
+<script src="script.js"></script>
+</body>
+</html>
