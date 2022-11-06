@@ -16,9 +16,9 @@
 			<th>Покупка</th>
 			<th>Продажа</th>
 		</tr>
-		<tr ng-repeat="currenc in currency | orderBy: 'ccy'">
+		<tr ng-repeat="currenc in currency">
 			<td>{{currenc.ccy}}</td>
-			<td>{{currenc.buy}}</td>
+			<td id="currencyName">{{currenc.buy}}</td>
 			<td>{{currenc.sale}}</td>
 		</tr>
 	</table>
@@ -36,8 +36,6 @@
 		<option>EUR</option>
 		<option>USD</option>
 	</select>
-<!--	<button onclick="calc1()">From 1 to 2</button>-->
-<!--	<button onclick="calc2()">From 2 to 1</button>-->
 </div>
 <script src="script.js"></script>
 </body>
