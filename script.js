@@ -1,10 +1,11 @@
+// получение курса валют в таблицу в header
 let currencyApp = angular.module('currencyApp', []);
 currencyApp.controller('CurrencyCtrl', function ($scope, $http){
     $http.get('https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11').success(function(data) {
         $scope.currency = data;
     });
 });
-
+// получение курса валют для конвертации
 let curUSDtoUAH
 let curEURtoUAH
 let requestURL = 'https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11'
@@ -14,18 +15,19 @@ request.responseType = 'json';
 request.send();
 request.onload = function() {
    let curInfo = request.response;
+    console.log(curInfo)
    curUSDtoUAH = curInfo[0].sale;
    curEURtoUAH =curInfo[1].sale;
 }
 
-// ожидание изменений выбора валюты или суммы
+// ожидание изменений выбора валюты или изменения суммы
 let changeCur = document.getElementById("select1")
 changeCur.addEventListener('click', function(){
     calc1()
 })
 let changeCur2 = document.getElementById("select2")
 changeCur2.addEventListener('click', function(){
-    calc2()
+    calc1()
 })
 let changeSum = document.getElementById("in")
 changeSum.addEventListener('input', function(){
@@ -36,6 +38,7 @@ changeSum2.addEventListener('input', function(){
     calc2()
 })
 
+// функции конвертации
 let res
 function calc1(sum ,cur) {
     sum = document.getElementById("in").value

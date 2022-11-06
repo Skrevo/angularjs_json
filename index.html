@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="currencyApp">
+<html lang="ru" ng-app="currencyApp">
 <head>
 	<meta charset="utf-8">
 	<title>Конвертер валют</title>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular.min.js"></script>
-
 </head>
-<body style="margin: 20px">
-<header ng-controller="CurrencyCtrl">
+<body ng-controller="CurrencyCtrl" style="margin: 20px">
+<header>
 	<h2>Конвертер валют</h2>
 	<table class="table table-striped">
 		<tr>
@@ -16,25 +15,24 @@
 			<th>Покупка</th>
 			<th>Продажа</th>
 		</tr>
-		<tr ng-repeat="currenc in currency">
-			<td>{{currenc.ccy}}</td>
-			<td id="currencyName">{{currenc.buy}}</td>
-			<td>{{currenc.sale}}</td>
+		<tr ng-repeat="curren in currency" ng-if="curren.ccy != 'BTC' && curren.ccy != 'RUR'">
+			<td>{{curren.ccy}}</td>
+			<td>{{curren.buy}} {{curren.base_ccy}}</td>
+			<td>{{curren.sale}} {{curren.base_ccy}}</td>
 		</tr>
 	</table>
 </header>
 <div class="calc">
+	<label for="in">Введите сумму для покупки</label>
 	<input type="number" id="in">
 	<select id="select1">
+		<option ng-repeat="curren in currency" ng-if="curren.ccy != 'BTC' && curren.ccy != 'RUR'">{{curren.ccy}}</option>
 		<option>UAH</option>
-		<option>EUR</option>
-		<option>USD</option>
 	</select>
 	<input type="number" id="out">
 	<select id="select2">
+		<option ng-repeat="curren in currency" ng-if="curren.ccy != 'BTC' && curren.ccy != 'RUR'">{{curren.ccy}}</option>
 		<option>UAH</option>
-		<option>EUR</option>
-		<option>USD</option>
 	</select>
 </div>
 <script src="script.js"></script>
