@@ -35,7 +35,7 @@ function calc1(sum ,cur) {
     }
     if (document.getElementById("select1").value === "EUR") {
         if (document.getElementById("select2").value === "UAH")
-            cur = 38.45318
+            cur = 37.45318
         if (document.getElementById("select2").value === "EUR")
             cur = 1
         if (document.getElementById("select2").value === "USD")
