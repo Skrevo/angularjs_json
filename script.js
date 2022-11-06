@@ -29,7 +29,7 @@ function calc1(sum ,cur) {
         if (document.getElementById("select2").value === "UAH")
             cur = 37.45318
         if (document.getElementById("select2").value === "EUR")
-            cur = 1.07
+            cur = 1
         if (document.getElementById("select2").value === "USD")
             cur = 1
     }
@@ -39,15 +39,15 @@ function calc1(sum ,cur) {
         if (document.getElementById("select2").value === "EUR")
             cur = 1
         if (document.getElementById("select2").value === "USD")
-            cur = 0.93
+            cur = 1
     }
     if (document.getElementById("select1").value === "UAH") {
         if (document.getElementById("select2").value === "UAH")
             cur = 1
         if (document.getElementById("select2").value === "EUR")
-            cur = 0.376
+            cur = 1/37.45318
         if (document.getElementById("select2").value === "USD")
-            cur = 0.386
+            cur = 1/37.45318
     }
     res = cur * sum
     document.getElementById("out").value=res
@@ -59,7 +59,7 @@ function calc2(sum ,cur) {
         if (document.getElementById("select1").value === "UAH")
             cur = 37.45318
         if (document.getElementById("select1").value === "EUR")
-            cur = 1.07
+            cur = 1
         if (document.getElementById("select1").value === "USD")
             cur = 1
     }
@@ -69,15 +69,15 @@ function calc2(sum ,cur) {
         if (document.getElementById("select1").value === "EUR")
             cur = 1
         if (document.getElementById("select1").value === "USD")
-            cur = 0.93
+            cur = 1
     }
     if (document.getElementById("select2").value === "UAH") {
         if (document.getElementById("select1").value === "UAH")
             cur = 1
         if (document.getElementById("select1").value === "EUR")
-            cur = 0.376
+            cur = 1/37.45318
         if (document.getElementById("select1").value === "USD")
-            cur = 0.386
+            cur = 1/37.45318
     }
     res = cur * sum
     document.getElementById("in").value=res
