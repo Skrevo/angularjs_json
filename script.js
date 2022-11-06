@@ -4,6 +4,20 @@ currencyApp.controller('CurrencyCtrl', function ($scope, $http){
         $scope.currency = data;
     });
 });
+
+let curUSDtoUAH
+let curEURtoUAH
+let requestURL = 'https://api.privatbank.ua/p24api/pubinfo?exchange&json&coursid=11'
+let request = new XMLHttpRequest()
+request.open('GET',requestURL)
+request.responseType = 'json';
+request.send();
+request.onload = function() {
+   let curInfo = request.response;
+   curUSDtoUAH = curInfo[0].sale;
+   curEURtoUAH =curInfo[1].sale;
+}
+
 // ожидание изменений выбора валюты или суммы
 let changeCur = document.getElementById("select1")
 changeCur.addEventListener('click', function(){
@@ -27,27 +41,27 @@ function calc1(sum ,cur) {
     sum = document.getElementById("in").value
     if (document.getElementById("select1").value === "USD") {
         if (document.getElementById("select2").value === "UAH")
-            cur = 37.45318
+            cur = curUSDtoUAH
         if (document.getElementById("select2").value === "EUR")
-            cur = 1
+            cur = curUSDtoUAH/curEURtoUAH
         if (document.getElementById("select2").value === "USD")
             cur = 1
     }
     if (document.getElementById("select1").value === "EUR") {
         if (document.getElementById("select2").value === "UAH")
-            cur = 37.45318
+            cur = curEURtoUAH
         if (document.getElementById("select2").value === "EUR")
             cur = 1
         if (document.getElementById("select2").value === "USD")
-            cur = 1
+            cur = curEURtoUAH/curUSDtoUAH
     }
     if (document.getElementById("select1").value === "UAH") {
         if (document.getElementById("select2").value === "UAH")
             cur = 1
         if (document.getElementById("select2").value === "EUR")
-            cur = 1/37.45318
+            cur = 1/curEURtoUAH
         if (document.getElementById("select2").value === "USD")
-            cur = 1/37.45318
+            cur = 1/curUSDtoUAH
     }
     res = cur * sum
     document.getElementById("out").value=res
@@ -57,27 +71,27 @@ function calc2(sum ,cur) {
     sum = document.getElementById("out").value
     if (document.getElementById("select2").value === "USD") {
         if (document.getElementById("select1").value === "UAH")
-            cur = 37.45318
+            cur = curUSDtoUAH
         if (document.getElementById("select1").value === "EUR")
-            cur = 1
+            cur = curUSDtoUAH/curEURtoUAH
         if (document.getElementById("select1").value === "USD")
             cur = 1
     }
     if (document.getElementById("select2").value === "EUR") {
         if (document.getElementById("select1").value === "UAH")
-            cur = 37.45318
+            cur = curEURtoUAH
         if (document.getElementById("select1").value === "EUR")
             cur = 1
         if (document.getElementById("select1").value === "USD")
-            cur = 1
+            cur = curEURtoUAH/curUSDtoUAH
     }
     if (document.getElementById("select2").value === "UAH") {
         if (document.getElementById("select1").value === "UAH")
             cur = 1
         if (document.getElementById("select1").value === "EUR")
-            cur = 1/37.45318
+            cur = 1/curEURtoUAH
         if (document.getElementById("select1").value === "USD")
-            cur = 1/37.45318
+            cur = 1/curUSDtoUAH
     }
     res = cur * sum
     document.getElementById("in").value=res
